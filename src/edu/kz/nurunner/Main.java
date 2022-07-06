@@ -31,20 +31,17 @@ public class Main {
             return;
         }
 
-        setFrame();
+        initUI();
+        window.setVisible(true);
     }
 
-    public static void setFrame(){
-        if (window == null)
-            window = new JFrame("NU GRADUATION by shynggysn");
-        window.setSize(common.windowWidth, common.windowHeight);
-        window.setLocation(400, 200);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
-
-        display.paintComponent(window.getGraphics());
+    public static void initUI(){
+        window = new JFrame("NU GRADUATION by shynggysn");
         window.add(display);
 
+        window.setSize(common.windowWidth, common.windowHeight);
+        window.setLocationRelativeTo(null);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addListener();
     }
 
