@@ -13,6 +13,13 @@ public abstract class Entity {
     public State state;
     public Common common;
 
+    public Entity() {
+    }
+
+    public Entity(String name){
+        this.name = name;
+    }
+
     public abstract void draw(Graphics2D g2d);
     public void step(){
         return;
