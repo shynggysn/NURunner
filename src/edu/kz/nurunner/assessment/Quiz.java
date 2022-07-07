@@ -2,7 +2,8 @@ package edu.kz.nurunner.assessment;
 
 import edu.kz.nurunner.entity.Assessment;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Color;
 
 public class Quiz extends Assessment {
 

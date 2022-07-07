@@ -16,12 +16,16 @@ public abstract class Entity {
     public Entity() {
     }
 
+    public Entity(String name, Vector2D position, State state) {
+        this.name = name;
+        this.position = position;
+        this.state = state;
+    }
+
     public Entity(String name){
         this.name = name;
     }
 
     public abstract void draw(Graphics2D g2d);
-    public void step(){
-        return;
-    }
+    public void step(){}
 }

@@ -6,6 +6,7 @@ import edu.kz.nurunner.util.Display;
 import javax.swing.JFrame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Time;
 
 public class Main {
 
@@ -13,11 +14,11 @@ public class Main {
     public static Display display;
     private static Common common;
 
-    private static int defaultStudentsNumber = 20;
-    private static int defaultWindowWidth = 1200;
-    private static int getDefaultWindowHeight = 700;
+    private static final int defaultStudentsNumber = 20;
+    private static final int defaultWindowWidth = 1200;
+    private static final int defaultWindowHeight = 700;
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         consoleMessage();
         try {
             handleArguments(args);
@@ -29,6 +30,10 @@ public class Main {
 
         initUI();
         window.setVisible(true);
+
+//        while(true){
+//            common.stepAllEntities();
+//        }
     }
 
     public static void initUI(){
@@ -51,19 +56,11 @@ public class Main {
     }
 
     public static void handleArguments(String[] args) throws NumberFormatException {
-        switch(args.length){
-            case 0:
-                common = new Common(defaultStudentsNumber, defaultWindowWidth, getDefaultWindowHeight);
-                break;
-            case 1:
-                common = new Common(Integer.parseInt(args[0]), defaultWindowWidth, getDefaultWindowHeight);
-                break;
-            case 2:
-                common = new Common(Integer.parseInt(args[0]), Integer.parseInt(args[1]), defaultWindowWidth);
-                break;
-            case 3:
-                common = new Common(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
-                break;
+        switch (args.length) {
+            case 0 -> common = new Common(defaultStudentsNumber, defaultWindowWidth, defaultWindowHeight);
+            case 1 -> common = new Common(Integer.parseInt(args[0]), defaultWindowWidth, defaultWindowHeight);
+            case 2 -> common = new Common(Integer.parseInt(args[0]), Integer.parseInt(args[1]), defaultWindowHeight);
+            case 3 -> common = new Common(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
         }
     }
 

@@ -1,7 +1,9 @@
 package edu.kz.nurunner.util;
 
 import javax.swing.JPanel;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Display extends JPanel {
     public Common common;
@@ -29,5 +31,4 @@ public class Display extends JPanel {
             g2d.drawImage(common.map.background, 0, 0, getPreferredSize().width, getPreferredSize().height, this);
         }
     }
-
 }

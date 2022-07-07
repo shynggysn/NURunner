@@ -1,6 +1,7 @@
 package edu.kz.nurunner.util;
 
 import edu.kz.nurunner.entity.*;
+import edu.kz.nurunner.state.GotoXY;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -20,7 +21,6 @@ public class Common {
 
     private int studentsNumber;
     private static final String mapPath = "./NURunner_Solution/Demo/NUMap-Faded.jpg";
-
 
     private static final String[] academicianNames = new String[]{"Katsu", "Temizer", "Nivelle", "Tourassis"};
     private static final String[] speakerNames = new String[]{"Nazarbayev", "Tokayev"};
@@ -51,8 +51,10 @@ public class Common {
     }
 
     public void stepAllEntities(){
-        students.forEach(Entity::step);
-        speakers.forEach(Entity::step);
+        for(Student student: students){
+            student.step();
+        }
+//        speakers.forEach(Entity::step);
     }
 
     public void drawAllEntities(Graphics2D g2d){
@@ -81,28 +83,37 @@ public class Common {
 
     private void generateAcademicians(){
         academicians = new ArrayList<>(academicianNames.length);
-        for(int i = 0; i < academicianNames.length; i++){
-            academicians.add(new Academician(academicianNames[i]));
+        for (String academicianName : academicianNames) {
+            academicians.add(new Academician
+                    (
+                            academicianName,
+                            new Vector2D(randomInt(0, windowWidth), randomInt(0, windowHeight)),
+                            new GotoXY(new Vector2D(randomInt(0, windowWidth), randomInt(0, windowHeight)))
+                    )
+            );
         }
     }
+
     private void generateStudents(){
         students = new ArrayList<>(studentsNumber);
         for(int i = 0; i< studentsNumber; i++){
-            students.add(new Student(studentNames[i]));
+            students.add(new Student
+                    (
+                            studentNames[i],
+                            new Vector2D(randomInt(0, windowWidth), randomInt(0, windowHeight)),
+                            new GotoXY(new Vector2D(randomInt(0, windowWidth), randomInt(0, windowHeight)))
+                    )
+            );
         }
     }
 
     private void drawAcademicians(Graphics2D g2d){
-        for(Academician academician: academicians){
-            academician.position = new Vector2D(randomInt(0, windowWidth), randomInt(0, windowHeight));
+        for(Academician academician: academicians)
             academician.draw(g2d);
-        }
     }
 
     private void drawStudents(Graphics2D g2d){
-        for(Student student: students){
-            student.position = new Vector2D(randomInt(0, windowWidth), randomInt(0, windowHeight));
+        for(Student student: students)
             student.draw(g2d);
-        }
     }
 }
